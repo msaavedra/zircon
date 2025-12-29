@@ -120,4 +120,4 @@ for ns in argocd platform services; do
 done
 
 kube_do kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/v3.2.3/manifests/install.yaml
-kube_do kubectl apply -f "${KUB_BASE}/argocd/bootstrap.yaml"
+kube_do kubectl apply -f "${KUBE_BASE}/argocd/bootstrap.yaml"
