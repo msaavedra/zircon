@@ -18,7 +18,7 @@ if ! id "${KUBE_USER}" &>/dev/null; then
 fi
 
 ORIG_USER_REPO_DIR=$(git rev-parse --show-toplevel)
-REPO_NAME=$(dirname "${ORIG_USER_REPO_DIR}")
+REPO_NAME=$(basename "${ORIG_USER_REPO_DIR}")
 KUBE_BASE="${KUBE_HOME}/${REPO_NAME}"
 rm -rf "${KUBE_BASE}"
 cp -arp "${ORIG_USER_REPO_DIR}" "${KUBE_BASE}"
