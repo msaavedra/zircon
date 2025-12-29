@@ -121,3 +121,4 @@ done
 
 kube_do kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/v3.2.3/manifests/install.yaml
 kube_do kubectl apply -f "${KUBE_BASE}/argocd/bootstrap.yaml"
+kube_do kubectl taint nodes --all node-role.kubernetes.io/control-plane-
