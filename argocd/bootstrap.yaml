@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/YOURORG/YOURREPO.git
+    repoURL: https://github.com/msaavedra/zircon.git
     targetRevision: main
     path: argocd/root
 
