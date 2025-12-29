@@ -22,6 +22,13 @@ net.ipv4.ip_forward = 1
 EOF
 sysctl --system
 
+cat >/etc/apt/apt.conf.d/90containerd <<'EOF'
+Dpkg::Options {
+  "--force-confdef";
+  "--force-confold";
+}
+EOF
+
 apt update
 apt install -y \
     apt-transport-https \
@@ -71,7 +78,7 @@ if [ ! -f /etc/kubernetes/admin.conf ]; then
 fi
 
 if ! id "${KUBE_USER}" &>/dev/null; then
-  groupadd "${KUBE_GID}"
+  groupadd -g "${KUBE_GID}" "${KUBE_USER}"
   useradd -u "${KUBE_UID}" -g "${KUBE_GID}" -m -d "${KUBE_HOME}" "${KUBE_USER}"
 fi
 
