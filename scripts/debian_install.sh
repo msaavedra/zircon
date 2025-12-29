@@ -119,6 +119,6 @@ for ns in argocd platform services; do
     kube_do kubectl create ns $ns
 done
 
-kube_do kubectl -n argocd apply -f https://raw.githubusercontent.com/argoproj/argo-cd/v3.2.3/manifests/install.yaml
+kube_do kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v3.2.3/manifests/install.yaml
 kube_do kubectl apply -f "${KUBE_BASE}/argocd/bootstrap.yaml"
 kube_do kubectl taint nodes --all node-role.kubernetes.io/control-plane-
