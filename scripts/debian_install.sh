@@ -109,8 +109,8 @@ kube_do helm upgrade --install cilium cilium/cilium \
   --values "${KUBE_BASE}/platform/bootstrap/cilium/values.yaml"
 kube_do kubectl -n kube-system rollout status ds/cilium
 kube_do kubectl -n kube-system rollout status deploy/cilium-operator
-kube_do kubectl apply -f lb-pool.yaml
-kube_do kubectl apply -f l2-policy.yaml
+kube_do kubectl apply -f "${KUBE_BASE}/platform/bootstrap/cilium/lb-pool.yaml"
+kube_do kubectl apply -f "${KUBE_BASE}/platform/bootstrap/cilium/l2-policy.yaml"
 
 echo "=== Installing Argo CD ==="
 
