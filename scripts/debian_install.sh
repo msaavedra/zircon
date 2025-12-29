@@ -89,8 +89,9 @@ kube_do() {
 }
 
 kube_do mkdir -p "${KUBE_HOME}/.kube"
-kube_do cp -f /etc/kubernetes/admin.conf "${KUBE_HOME}/.kube/config"
+cp -f /etc/kubernetes/admin.conf "${KUBE_HOME}/.kube/config"
 chown -R ${KUBE_USER}:${KUBE_USER} "${KUBE_HOME}/.kube"
+chmod 600 "${KUBE_HOME}/.kube/config"
 
 echo "=== Installing Cilium ==="
 
