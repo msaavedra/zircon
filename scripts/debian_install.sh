@@ -6,13 +6,23 @@
 set -e
 
 # Adjust the config variables here as needed.
+KUBE_CIDR="10.236.0.0/16"
 KUBE_USER="kube"
 KUBE_UID=2000
 KUBE_GID=2000
 KUBE_HOME="/home/kube"
-KUBE_CIDR="10.236.0.0/16"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if ! id "${KUBE_USER}" &>/dev/null; then
+  groupadd -g "${KUBE_GID}" "${KUBE_USER}"
+  useradd -u "${KUBE_UID}" -g "${KUBE_GID}" -m -d "${KUBE_HOME}" "${KUBE_USER}"
+fi
+
+ORIG_USER_REPO_DIR=$(git rev-parse --show-toplevel)
+REPO_NAME=$(dirname "${ORIG_USER_REPO_DIR}")
+KUBE_BASE="${KUBE_HOME}/${REPO_NAME}"
+rm -rf "${KUBE_BASE}"
+cp "${ORIG_USER_REPO_DIR}" "${KUBE_BASE}"
+chown -R ${KUBE_UID}:${KUBE_GID} "${KUBE_BASE}"
 
 echo "=== Installing Kubernetes prerequisites ==="
 
@@ -79,18 +89,13 @@ if [ ! -f /etc/kubernetes/admin.conf ]; then
   kubeadm init --skip-phases=addon/kube-proxy --pod-network-cidr="${KUBE_CIDR}"
 fi
 
-if ! id "${KUBE_USER}" &>/dev/null; then
-  groupadd -g "${KUBE_GID}" "${KUBE_USER}"
-  useradd -u "${KUBE_UID}" -g "${KUBE_GID}" -m -d "${KUBE_HOME}" "${KUBE_USER}"
-fi
-
 kube_do() {
   sudo -u kube -i "${@}"
 }
 
 kube_do mkdir -p "${KUBE_HOME}/.kube"
 cp -f /etc/kubernetes/admin.conf "${KUBE_HOME}/.kube/config"
-chown -R ${KUBE_USER}:${KUBE_USER} "${KUBE_HOME}/.kube"
+chown -R ${KUBE_UID}:${KUBE_GID} "${KUBE_HOME}/.kube"
 chmod 600 "${KUBE_HOME}/.kube/config"
 
 echo "=== Installing Cilium ==="
@@ -101,7 +106,7 @@ kube_do helm repo update
 kube_do helm upgrade --install cilium cilium/cilium \
   --namespace kube-system \
   --version 1.18.5 \
-  --values "${SCRIPT_DIR}/../platform/bootstrap/cilium/values.yaml"
+  --values "${KUBE_BASE}/platform/bootstrap/cilium/values.yaml"
 kube_do kubectl -n kube-system rollout status ds/cilium
 kube_do kubectl -n kube-system rollout status deploy/cilium-operator
 kube_do kubectl apply -f lb-pool.yaml
@@ -115,4 +120,4 @@ for ns in argocd platform services; do
 done
 
 kube_do kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/v3.2.3/manifests/install.yaml
-kube_do kubectl apply -f "${SCRIPT_DIR}/../argocd/bootstrap.yaml"
+kube_do kubectl apply -f "${KUB_BASE}/argocd/bootstrap.yaml"
