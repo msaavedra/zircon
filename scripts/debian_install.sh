@@ -7,6 +7,8 @@ set -e
 
 # Adjust the config variables here as needed.
 KUBE_USER="kube"
+KUBE_UID=2000
+KUBE_GID=2000
 KUBE_HOME="/home/kube"
 KUBE_CIDR="10.236.0.0/16"
 
@@ -66,7 +68,8 @@ if [ ! -f /etc/kubernetes/admin.conf ]; then
 fi
 
 if ! id "${KUBE_USER}" &>/dev/null; then
-    useradd -m -d "${KUBE_HOME}" "${KUBE_USER}"
+  groupadd "${KUBE_GID}"
+  useradd -u "${KUBE_UID}" -g "${KUBE_GID}" -m -d "${KUBE_HOME}" "${KUBE_USER}"
 fi
 
 kube_do() {

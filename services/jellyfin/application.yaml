@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jellyfin
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/jellyfin/jellyfin-helm
+    targetRevision: 2.7.0
+    chart: jellyfin
+    helm:
+      values: |
+        image:
+          repository: jellyfin/jellyfin
+          tag: latest
+
+        service:
+          type: ClusterIP
+          port: 8096
+
+        persistence:
+          config:
+            enabled: true
+            storageClass: local-path
+            size: 10Gi
+          cache:
+            enabled: true
+            storageClass: local-path
+            size: 10Gi
+
+        volumes:
+          - name: media
+            hostPath:
+              path: /srv/media/
+              type: Directory
+
+        volumeMounts:
+          - name: media
+            mountPath: /srv/media
+            readOnly: true
+
+        securityContext:
+          runAsUser: 2000
+          runAsGroup: 2000
+
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: services
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
