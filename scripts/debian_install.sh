@@ -21,7 +21,7 @@ ORIG_USER_REPO_DIR=$(git rev-parse --show-toplevel)
 REPO_NAME=$(dirname "${ORIG_USER_REPO_DIR}")
 KUBE_BASE="${KUBE_HOME}/${REPO_NAME}"
 rm -rf "${KUBE_BASE}"
-cp "${ORIG_USER_REPO_DIR}" "${KUBE_BASE}"
+cp -arp "${ORIG_USER_REPO_DIR}" "${KUBE_BASE}"
 chown -R ${KUBE_UID}:${KUBE_GID} "${KUBE_BASE}"
 
 echo "=== Installing Kubernetes prerequisites ==="
