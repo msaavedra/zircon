@@ -7,8 +7,8 @@ spec:
   project: default
 
   source:
-    repoURL: oci://dp.apps.rancher.io/charts
-    targetRevision: 0.0.32
+    repoURL: oci://ghcr.io/rancher
+    targetRevision: 0.0.30
     chart: local-path-provisioner
     helm:
       values: |
