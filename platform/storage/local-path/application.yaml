@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://dp.apps.rancher.io/charts
+    repoURL: oci://dp.apps.rancher.io/charts
     targetRevision: 0.0.32
     chart: local-path-provisioner
     helm:
