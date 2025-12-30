@@ -7,8 +7,8 @@ spec:
   project: default
 
   source:
-    repoURL: https://charts.rancher.io
-    targetRevision: 0.0.29
+    repoURL: https://dp.apps.rancher.io/charts
+    targetRevision: 0.0.32
     chart: local-path-provisioner
     helm:
       values: |
