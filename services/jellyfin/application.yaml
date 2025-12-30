@@ -29,16 +29,11 @@ spec:
             enabled: true
             storageClass: local-path
             size: 10Gi
-
-        volumes:
-          - name: media
-            hostPath:
-              path: /srv/media/
-              type: Directory
-
-        volumeMounts:
-          - name: media
-            mountPath: /srv/media
+          
+          media:
+            enabled: true
+            type: hostPath
+            hostPath: /srv/media
             readOnly: true
 
         securityContext:
