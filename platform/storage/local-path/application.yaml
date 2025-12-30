@@ -7,8 +7,8 @@ spec:
   project: default
 
   source:
-    repoURL: oci://ghcr.io/rancher
-    targetRevision: 0.0.30
+    repoURL: https://charts.containeroo.ch
+    targetRevision: 0.0.33
     chart: local-path-provisioner
     helm:
       values: |
