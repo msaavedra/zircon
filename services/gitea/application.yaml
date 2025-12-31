@@ -22,6 +22,7 @@ spec:
             ROOT_URL: http://gitea.agate.lan/
             SSH_DOMAIN: gitea.agate.lan
             SSH_PORT: 22
+            SSH_LISTEN_PORT: 22
 
       persistence:
         enabled: true
