@@ -44,6 +44,10 @@ spec:
             clusterIP: ""
             nodePort: 32222
         
+        global:
+          postgresql:
+            enabled: false
+          
         postgresql:
           enabled: false
     
