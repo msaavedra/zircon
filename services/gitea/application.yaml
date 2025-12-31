@@ -1,0 +1,58 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://dl.gitea.com/charts/
+    chart: gitea
+    targetRevision: 10.4.1
+    helm:
+      values: |
+        gitea:
+          admin:
+            existingSecret: ""
+          config:
+            database:
+              DB_TYPE: sqlite3
+              PATH: /data/gitea/gitea.db
+            server:
+              DOMAIN: gitea.agate.home
+              ROOT_URL: http://gitea.agate.home/
+              SSH_DOMAIN: gitea.agate.home
+              SSH_PORT: 22
+
+        persistence:
+          enabled: true
+          storageClass: local-path
+          size: 10Gi
+
+        service:
+          http:
+            type: ClusterIP
+            port: 3000
+          ssh:
+            type: LoadBalancer
+            port: 22
+
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi
+          limits:
+            cpu: "1"
+            memory: 1Gi
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: services
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
