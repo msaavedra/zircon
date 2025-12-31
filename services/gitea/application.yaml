@@ -32,10 +32,12 @@ spec:
           http:
             type: ClusterIP
             port: 3000
-          ssh:
-            type: LoadBalancer
-            port: 22
-    
+        
+        ssh:
+          enabled: true
+          type: NodePort
+          nodePort: 32222
+        
         postgresql:
           enabled: false
     
