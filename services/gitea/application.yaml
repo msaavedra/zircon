@@ -17,9 +17,9 @@ spec:
             DB_TYPE: sqlite3
             PATH: /data/gitea/gitea.db
           server:
-            DOMAIN: gitea.agate.lan
-            ROOT_URL: http://gitea.agate.lan/
-            SSH_DOMAIN: gitea.agate.lan
+            DOMAIN: gitea.agate.home
+            ROOT_URL: http://gitea.agate.home/
+            SSH_DOMAIN: gitea.agate.home
             SSH_PORT: 22
             SSH_LISTEN_PORT: 22
     
@@ -28,6 +28,10 @@ spec:
           storageClass: local-path
           size: 10Gi
         
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+
         service:
           http:
             type: ClusterIP
