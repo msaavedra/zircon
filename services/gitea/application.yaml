@@ -12,16 +12,17 @@ spec:
     targetRevision: 10.4.1
     helm:
       values: |
-        config:
-          database:
-            DB_TYPE: sqlite3
-            PATH: /data/gitea/gitea.db
-          server:
-            DOMAIN: gitea.agate.home
-            ROOT_URL: http://gitea.agate.home/
-            SSH_DOMAIN: gitea.agate.home
-            SSH_PORT: 22
-            SSH_LISTEN_PORT: 22
+        gitea:
+          config:
+            database:
+              DB_TYPE: sqlite3
+              PATH: /data/gitea/gitea.db
+            server:
+              DOMAIN: gitea.agate.home
+              ROOT_URL: http://gitea.agate.home/
+              SSH_DOMAIN: gitea.agate.home
+              SSH_PORT: 22
+              SSH_LISTEN_PORT: 22
     
         persistence:
           enabled: true
