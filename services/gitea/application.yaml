@@ -27,16 +27,17 @@ spec:
           enabled: true
           storageClass: local-path
           size: 10Gi
-    
+        
         service:
           http:
             type: ClusterIP
+            clusterIP: ""
             port: 3000
         
-        ssh:
-          enabled: true
-          type: NodePort
-          nodePort: 32222
+          ssh:
+            type: NodePort
+            clusterIP: ""
+            nodePort: 32222
         
         postgresql:
           enabled: false
