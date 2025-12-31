@@ -22,31 +22,31 @@ spec:
             SSH_DOMAIN: gitea.agate.lan
             SSH_PORT: 22
             SSH_LISTEN_PORT: 22
-
-      persistence:
-        enabled: true
-        storageClass: local-path
-        size: 10Gi
-
-      service:
-        http:
-          type: ClusterIP
-          port: 3000
-        ssh:
-          type: LoadBalancer
-          port: 22
-
-      postgresql:
-        enabled: false
-
-      postgresql-ha:
-        enabled: false
-
-      redis:
-        enabled: false
-
-      redis-cluster:
-        enabled: false
+    
+        persistence:
+          enabled: true
+          storageClass: local-path
+          size: 10Gi
+    
+        service:
+          http:
+            type: ClusterIP
+            port: 3000
+          ssh:
+            type: LoadBalancer
+            port: 22
+    
+        postgresql:
+          enabled: false
+    
+        postgresql-ha:
+          enabled: false
+    
+        redis:
+          enabled: false
+    
+        redis-cluster:
+          enabled: false
 
   destination:
     server: https://kubernetes.default.svc
