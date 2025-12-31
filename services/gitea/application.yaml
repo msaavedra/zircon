@@ -13,38 +13,40 @@ spec:
     helm:
       values: |
         gitea:
-          admin:
-            existingSecret: ""
-          config:
-            database:
-              DB_TYPE: sqlite3
-              PATH: /data/gitea/gitea.db
-            server:
-              DOMAIN: gitea.agate.home
-              ROOT_URL: http://gitea.agate.home/
-              SSH_DOMAIN: gitea.agate.home
-              SSH_PORT: 22
+        config:
+          database:
+            DB_TYPE: sqlite3
+            PATH: /data/gitea/gitea.db
+          server:
+            DOMAIN: gitea.agate.lan
+            ROOT_URL: http://gitea.agate.lan/
+            SSH_DOMAIN: gitea.agate.lan
+            SSH_PORT: 22
 
-        persistence:
-          enabled: true
-          storageClass: local-path
-          size: 10Gi
+      persistence:
+        enabled: true
+        storageClass: local-path
+        size: 10Gi
 
-        service:
-          http:
-            type: ClusterIP
-            port: 3000
-          ssh:
-            type: LoadBalancer
-            port: 22
+      service:
+        http:
+          type: ClusterIP
+          port: 3000
+        ssh:
+          type: LoadBalancer
+          port: 22
 
-        resources:
-          requests:
-            cpu: 200m
-            memory: 512Mi
-          limits:
-            cpu: "1"
-            memory: 1Gi
+      postgresql:
+        enabled: false
+
+      postgresql-ha:
+        enabled: false
+
+      redis:
+        enabled: false
+
+      redis-cluster:
+        enabled: false
 
   destination:
     server: https://kubernetes.default.svc
