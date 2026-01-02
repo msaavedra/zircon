@@ -1,22 +1,19 @@
 # Homelab Kubernetes GitOps Repository
 
-This repository contains **all Kubernetes configuration for my homelab**, managed using a **GitOps-first workflow with Argo CD**.
+This repository contains all Kubernetes configuration for my homelab, managed using a GitOps-centric workflow with Argo CD.
 
-It intentionally contains **no application source code**.  
-Its sole purpose is to declaratively define **cluster infrastructure, platform services, and user-facing workloads**.
+It intentionally contains no application source code. The only imperative code is a bash script to initialize kubernetes with the cilium CNI, and install ArgoCD. Beyond that point, all cluster infrastructure, and platform infrastructure are defined declaratively.
 
 ---
 
 ## High-level Architecture
 
-This cluster follows a strict separation between **imperative bootstrap** and **declarative GitOps management**.
-
 Host OS + kubeadm
-↓
+  ↓
 Cilium CNI (no kube-proxy)
-↓
+  ↓
 Argo CD
-↓
+  ↓
 GitOps-managed platform + services
 
 Once Argo CD is installed, **all further changes are made by committing to this repository**.
@@ -27,7 +24,7 @@ Once Argo CD is installed, **all further changes are made by committing to this 
 
 This repository uses the **App of Apps** pattern:
 
-- `argocd/bootstrap.yaml` creates a single **root Argo CD Application**
+- `argocd/bootstrap.yaml` creates a single root Argo CD Application
 - That root Application manages:
   - `platform/` (infrastructure)
   - `services/` (applications)
@@ -57,7 +54,6 @@ After this point:
 
 ## Argo CD Management Model
 
-- Argo CD is installed manually, then **self-managed via Git**
 - All Argo CD `Application` resources live under `argocd/`
 - Platform and services are managed as separate Argo Applications
 
@@ -77,15 +73,11 @@ The `platform/` directory contains **cluster-wide infrastructure**, such as:
 - Certificate management
 - Shared namespaces
 
-Rule of thumb:
-
-> If an application is deleted, platform components should continue running.
-
 ---
 
 ## Services
 
-The `services/` directory contains **user-facing workloads**, such as:
+The `services/` directory contains user-facing workloads, such as:
 
 - Media servers
 - Home automation
@@ -108,7 +100,7 @@ Each service:
 
 ---
 
-## Non-goals
+## Out of Scope Jobs Avoided Here
 
 - Managing application source code
 - Supporting cloud providers
@@ -120,7 +112,6 @@ Each service:
 
 - Secrets management is intentionally excluded from the initial bootstrap
 - All components are version-pinned where possible
-- Changes should be made via pull requests whenever practical
 
 ---
 
