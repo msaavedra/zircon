@@ -29,12 +29,11 @@ spec:
             enabled: true
             storageClass: local-path
             size: 10Gi
-          
           media:
             enabled: true
             type: hostPath
             hostPath: /srv/media
-            readOnly: true
+            readOnly: false
         
         podSecurityContext:
           fsGroup: 1000
