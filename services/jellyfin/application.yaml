@@ -36,7 +36,7 @@ spec:
             readOnly: false
         
         podSecurityContext:
-          fsGroup: 1000
+          fsGroup: 2000
 
         securityContext:
           runAsUser: 2000
