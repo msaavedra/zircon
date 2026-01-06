@@ -33,7 +33,7 @@ spec:
             enabled: true
             type: hostPath
             hostPath: /srv/media
-            readOnly: false
+            readOnly: true
         
         podSecurityContext:
           fsGroup: 2000
