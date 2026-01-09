@@ -79,6 +79,7 @@ echo "=== Removing kube user and home directory ==="
 
 if id "${KUBE_USER}" &>/dev/null; then
   userdel -r "${KUBE_USER}"
+  groupdel "${KUBE_USER}"
 fi
 
 echo "=== Kubernetes teardown complete ==="
