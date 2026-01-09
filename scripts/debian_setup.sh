@@ -5,16 +5,12 @@
 
 set -e
 
-# Adjust the config variables here as needed.
-KUBE_CIDR="10.236.0.0/16"
-KUBE_USER="kube"
-KUBE_UID=2000
-KUBE_GID=2000
-KUBE_HOME="/home/kube"
+SCRIPT_DIR="$( cd "$( dirname "$(readlink -f "${BASH_SOURCE[0]}")" )" >/dev/null 2>&1 && pwd )"
+source "${SCRIPT_DIR}/env.sh"
 
 if ! id "${KUBE_USER}" &>/dev/null; then
   groupadd -g "${KUBE_GID}" "${KUBE_USER}"
-  useradd -u "${KUBE_UID}" -g "${KUBE_GID}" -m -d "${KUBE_HOME}" "${KUBE_USER}"
+  useradd -u "${KUBE_UID}" -g "${KUBE_GID}" -m -m /bin/bash -d "${KUBE_HOME}" "${KUBE_USER}"
 fi
 
 ORIG_USER_REPO_DIR=$(git rev-parse --show-toplevel)
@@ -48,7 +44,7 @@ apt install -y \
 
 # Set up kubernetes apt source
 rm -f /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.35/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 chmod a+r /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /" > /etc/apt/sources.list.d/kubernetes.list
 
@@ -66,11 +62,11 @@ echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.co
 
 apt update
 apt install -y \
-    containerd.io \
-    helm \
-    kubeadm \
-    kubelet \
-    kubectl
+    containerd.io=1.7.* \
+    helm=3.19.* \
+    kubeadm=1.33.* \
+    kubelet=1.33.* \
+    kubectl=1.33.*
 
 sudo apt-mark hold containerd.io helm kubeadm kubelet kubectl
 
@@ -89,9 +85,6 @@ if [ ! -f /etc/kubernetes/admin.conf ]; then
   kubeadm init --skip-phases=addon/kube-proxy --pod-network-cidr="${KUBE_CIDR}"
 fi
 
-kube_do() {
-  sudo -u kube -i "${@}"
-}
 
 kube_do mkdir -p "${KUBE_HOME}/.kube"
 cp -f /etc/kubernetes/admin.conf "${KUBE_HOME}/.kube/config"
