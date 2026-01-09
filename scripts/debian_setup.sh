@@ -10,7 +10,7 @@ source "${SCRIPT_DIR}/env.sh"
 
 if ! id "${KUBE_USER}" &>/dev/null; then
   groupadd -g "${KUBE_GID}" "${KUBE_USER}"
-  useradd -u "${KUBE_UID}" -g "${KUBE_GID}" -m -m /bin/bash -d "${KUBE_HOME}" "${KUBE_USER}"
+  useradd -u "${KUBE_UID}" -g "${KUBE_GID}" -m -s /bin/bash -d "${KUBE_HOME}" "${KUBE_USER}"
 fi
 
 ORIG_USER_REPO_DIR=$(git rev-parse --show-toplevel)
