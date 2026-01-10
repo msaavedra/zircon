@@ -25,18 +25,16 @@ spec:
               SSH_LISTEN_PORT: 22
     
         persistence:
-          enabled: false
+          enabled: true
+          storageClass: ""
+          accessModes:
+            - ReadWriteOnce
+          size: 2Gi
         
-        extraVolumes:
-        - name: gitea-data
           hostPath:
             path: /srv/apps/gitea/data
             type: Directory
-          
-        extraVolumeMounts:
-          - name: gitea-data
-            mountPath: /data
-          
+ 
         podSecurityContext:
           fsGroup: 2000
         
