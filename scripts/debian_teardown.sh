@@ -84,9 +84,9 @@ if id "${KUBE_USER}" &>/dev/null; then
   groupdel "${KUBE_USER}" || true
 fi
 
-rm -f \
-  "${KUBE_HOME}/.kube"
-  "${KUBE_HOME}/.config"
+rm -rf \
+  "${KUBE_HOME}/.kube" \
+  "${KUBE_HOME}/.config" \
   "${KUBE_HOME}/.cache"
 
 echo "=== Kubernetes teardown complete ==="
