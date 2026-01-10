@@ -22,7 +22,7 @@ spec:
               ROOT_URL: http://gitea.agate.home/
               SSH_DOMAIN: gitea.agate.home
               SSH_PORT: 22
-              SSH_LISTEN_PORT: 22
+              SSH_LISTEN_PORT: 2022
           env:
             - name: USER_UID
               value: "2000"
