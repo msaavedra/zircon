@@ -25,13 +25,24 @@ spec:
               SSH_LISTEN_PORT: 22
     
         persistence:
-          enabled: true
-          storageClass: local-path
-          size: 10Gi
+          enabled: false
+        
+        extraVolumes:
+        - name: gitea-data
+          hostPath:
+            path: /srv/apps/gitea/data
+            type: Directory
+          
+        extraVolumeMounts:
+          - name: gitea-data
+            mountPath: /data
+          
+        podSecurityContext:
+          fsGroup: 1000
         
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
+          runAsUser: 2000
+          runAsGroup: 2000
 
         service:
           http:

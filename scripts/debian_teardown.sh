@@ -46,7 +46,8 @@ rm -rf \
   /run/kubernetes \
   /run/containerd \
   /var/lib/containerd \
-  /var/run/containerd
+  /var/run/containerd \
+  /etc/containerd/* \
 
 echo "=== Removing Cilium leftovers (if any) ==="
 

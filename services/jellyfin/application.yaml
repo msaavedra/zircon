@@ -23,12 +23,14 @@ spec:
         persistence:
           config:
             enabled: true
-            storageClass: local-path
-            size: 10Gi
+            type: hostPath
+            hostPath: /srv/apps/jellyfin/config
+            readOnly: false
           cache:
             enabled: true
-            storageClass: local-path
-            size: 10Gi
+            type: hostPath
+            hostPath: /srv/apps/jellyfin/cache
+            readOnly: false
           media:
             enabled: true
             type: hostPath

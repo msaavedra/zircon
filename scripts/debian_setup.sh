@@ -77,14 +77,15 @@ sed -e 's/SystemdCgroup = false/SystemdCgroup = true/g' -i /etc/containerd/confi
 
 echo "=== Initializing cluster ==="
 
-systemctl enable --now containerd
+systemctl stop containerd
+systemctl stop kublet
 
+systemctl enable --now containerd
 systemctl enable --now kubelet
 
 if [ ! -f /etc/kubernetes/admin.conf ]; then
   kubeadm init --skip-phases=addon/kube-proxy --pod-network-cidr="${KUBE_CIDR}"
 fi
-
 
 kube_do mkdir -p "${KUBE_HOME}/.kube"
 cp -f /etc/kubernetes/admin.conf "${KUBE_HOME}/.kube/config"
