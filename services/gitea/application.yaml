@@ -31,7 +31,9 @@ spec:
       
         persistence:
           enabled: true
-          existingClaim: gitea-data
+          create: false
+          mount: true
+          claimName: gitea-data
    
         podSecurityContext:
           fsGroup: 2000
