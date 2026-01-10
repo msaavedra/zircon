@@ -32,7 +32,8 @@ apt purge -y \
   kubelet \
   kubectl \
   helm \
-  containerd.io
+  containerd.io \
+  || true
 
 echo "=== Removing Kubernetes configuration and state directories ==="
 
