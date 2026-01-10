@@ -20,8 +20,8 @@ fi
 
 echo "=== Stopping and disabling services ==="
 
-systemctl disable --now kubelet
-systemctl disable --now containerd
+systemctl disable --now kubelet || true
+systemctl disable --now containerd || true
 
 echo "=== Removing Kubernetes and container runtime packages ==="
 
@@ -76,11 +76,11 @@ rm -f \
 
 apt update
 
-echo "=== Removing kube user and home directory ==="
+echo "=== Removing kube user ==="
 
 if id "${KUBE_USER}" &>/dev/null; then
-  userdel  "${KUBE_USER}"
-  groupdel "${KUBE_USER}"
+  userdel  "${KUBE_USER}" || true
+  groupdel "${KUBE_USER}" \\ true
 fi
 
 rm -f \
