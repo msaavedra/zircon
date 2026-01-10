@@ -81,7 +81,7 @@ echo "=== Removing kube user ==="
 
 if id "${KUBE_USER}" &>/dev/null; then
   userdel  "${KUBE_USER}" || true
-  groupdel "${KUBE_USER}" \\ true
+  groupdel "${KUBE_USER}" || true
 fi
 
 rm -f \
