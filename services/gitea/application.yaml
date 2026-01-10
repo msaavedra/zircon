@@ -31,7 +31,6 @@ spec:
       
         persistence:
           enabled: true
-          storageClass: ""
           existingClaim: gitea-data
    
         podSecurityContext:
