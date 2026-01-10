@@ -23,6 +23,11 @@ spec:
               SSH_DOMAIN: gitea.agate.home
               SSH_PORT: 22
               SSH_LISTEN_PORT: 22
+          env:
+            - name: USER_UID
+              value: "2000"
+            - name: USER_GID
+              value: "2000"
           
           extraVolumes:
             - name: gitea-shared-storage
