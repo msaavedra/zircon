@@ -23,18 +23,18 @@ spec:
               SSH_DOMAIN: gitea.agate.home
               SSH_PORT: 22
               SSH_LISTEN_PORT: 22
-    
-        persistence:
-          enabled: true
-          storageClass: ""
-          accessModes:
-            - ReadWriteOnce
-          size: 2Gi
-        
-          hostPath:
-            path: /srv/apps/gitea/data
-            type: Directory
- 
+      
+          persistence:
+            enabled: true
+            storageClass: ""
+            accessModes:
+              - ReadWriteOnce
+            size: 2Gi
+          
+            hostPath:
+              path: /srv/apps/gitea/data
+              type: Directory
+   
         podSecurityContext:
           fsGroup: 2000
           fsGroupChangePolicy: OnRootMismatch
