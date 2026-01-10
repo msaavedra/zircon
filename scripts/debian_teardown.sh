@@ -25,7 +25,7 @@ systemctl disable --now containerd || true
 
 echo "=== Removing Kubernetes and container runtime packages ==="
 
-apt-mark unhold kubeadm kubelet kubectl helm containerd.io
+apt-mark unhold kubeadm kubelet kubectl helm containerd.io || true
 
 apt purge -y \
   kubeadm \
