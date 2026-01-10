@@ -32,12 +32,7 @@ spec:
         persistence:
           enabled: true
           storageClass: ""
-          accessMode: ReadWriteOnce
-          size: 10Gi
-          type: hostPath
-          hostPath:
-            path: /srv/apps/gitea/data
-            type: Directory
+          existingClaim: gitea-data
    
         podSecurityContext:
           fsGroup: 2000
