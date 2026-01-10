@@ -77,8 +77,8 @@ sed -e 's/SystemdCgroup = false/SystemdCgroup = true/g' -i /etc/containerd/confi
 
 echo "=== Initializing cluster ==="
 
-systemctl stop containerd
-systemctl stop kublet
+systemctl stop containerd || true
+systemctl stop kublet || true
 
 systemctl enable --now containerd
 systemctl enable --now kubelet
