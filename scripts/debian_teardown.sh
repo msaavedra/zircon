@@ -47,7 +47,7 @@ rm -rf \
   /run/containerd \
   /var/lib/containerd \
   /var/run/containerd \
-  /etc/containerd/* \
+  /etc/containerd \
 
 echo "=== Removing Cilium leftovers (if any) ==="
 
@@ -79,9 +79,14 @@ apt update
 echo "=== Removing kube user and home directory ==="
 
 if id "${KUBE_USER}" &>/dev/null; then
-  userdel -r "${KUBE_USER}"
+  userdel  "${KUBE_USER}"
   groupdel "${KUBE_USER}"
 fi
+
+rm -f \
+  "${KUBE_HOME}/.kube"
+  "${KUBE_HOME}/.config"
+  "${KUBE_HOME}/.cache"
 
 echo "=== Kubernetes teardown complete ==="
 echo "A reboot is recommended to fully clear networking state."
