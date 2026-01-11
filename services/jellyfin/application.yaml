@@ -30,15 +30,17 @@ spec:
             enabled: true
             type: pvc
             existingClaim: jellyfin-config
+            size: 20Gi
           cache:
             enabled: true
             type: pvc
             hostPath: jellyfin-cache
+            size: 20Gi
           media:
             enabled: true
             type: hostPath
             hostPath: /srv/media
-            size: 20Gi
+            readOnly: true
         
         podSecurityContext:
           fsGroup: 2000
