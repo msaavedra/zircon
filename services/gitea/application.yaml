@@ -11,71 +11,8 @@ spec:
     chart: gitea
     targetRevision: 10.4.1
     helm:
-      values: |
-        gitea:
-          config:
-            database:
-              DB_TYPE: sqlite3
-              PATH: /data/gitea/gitea.db
-            server:
-              DOMAIN: gitea.agate.home
-              ROOT_URL: http://gitea.agate.home/
-              SSH_DOMAIN: gitea.agate.home
-              SSH_PORT: 22
-              SSH_LISTEN_PORT: 2022
-          env:
-            - name: USER_UID
-              value: "2000"
-            - name: USER_GID
-              value: "2000"
-      
-        persistence:
-          enabled: true
-          create: false
-          mount: true
-          claimName: gitea-data
-   
-        podSecurityContext:
-          fsGroup: 2000
-        
-        securityContext:
-          runAsUser: 2000
-          runAsGroup: 2000
-
-        containerSecurityContext:
-          runAsUser: 2000
-          runAsGroup: 2000
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop: ["ALL"]
-            add: ["SYS_CHROOT"]
-
-        service:
-          http:
-            type: ClusterIP
-            clusterIP: ""
-            port: 3000
-        
-          ssh:
-            type: NodePort
-            clusterIP: ""
-            nodePort: 32222
-        
-        global:
-          postgresql:
-            enabled: false
-          
-        postgresql:
-          enabled: false
-    
-        postgresql-ha:
-          enabled: false
-    
-        redis:
-          enabled: false
-    
-        redis-cluster:
-          enabled: false
+      valuesFiles:
+        - values.yaml
 
   destination:
     server: https://kubernetes.default.svc
