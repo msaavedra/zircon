@@ -20,22 +20,19 @@ spec:
           type: ClusterIP
           port: 8096
 
-        #jellyfin:
-        #  env:
-        #    - name: JELLYFIN_CACHE_DIR
-        #      value: /config/cache
+        jellyfin:
+          env:
+            - name: JELLYFIN_CACHE_DIR
+              value: /config/cache
 
         persistence:
           config:
             enabled: true
             type: pvc
             existingClaim: jellyfin-config
-            size: 20Gi
+            size: 30Gi
           cache:
-            enabled: true
-            type: pvc
-            existingClaim: jellyfin-cache
-            size: 20Gi
+            enabled: false
           media:
             enabled: true
             type: hostPath
