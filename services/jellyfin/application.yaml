@@ -34,7 +34,7 @@ spec:
           cache:
             enabled: true
             type: pvc
-            hostPath: jellyfin-cache
+            existingClaim: jellyfin-cache
             size: 20Gi
           media:
             enabled: true
