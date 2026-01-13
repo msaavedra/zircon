@@ -1,0 +1,8 @@
+apiVersion: v2
+name: gitea-umbrella-chart
+version: 0.1.0
+
+dependencies:
+  - name: gitea
+    version: 10.4.1
+    repository: https://dl.gitea.com/charts/

@@ -1,0 +1,8 @@
+apiVersion: v2
+name: jellyfin-umbrella-chart
+version: 0.1.0
+
+dependencies:
+  - name: jellyfin
+    version: 2.7.0
+    repository: https://jellyfin.github.io/jellyfin-helm
