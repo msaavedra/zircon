@@ -6,7 +6,7 @@ metadata:
     argocd.argoproj.io/sync-options: Prune=false
 spec:
   capacity:
-    storage: 20Gi
+    storage: 30Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
@@ -26,4 +26,4 @@ spec:
   volumeName: gitea-data
   resources:
     requests:
-      storage: 20Gi
+      storage: 30Gi
