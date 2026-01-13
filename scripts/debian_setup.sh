@@ -70,9 +70,8 @@ apt install -y \
 
 sudo apt-mark hold containerd.io helm kubeadm kubelet kubectl
 
-if [ ! -f /etc/containerd/config.toml ]; then
-  containerd config default > /etc/containerd/config.toml
-fi
+mkdir -p /etc/containerd
+containerd config default > /etc/containerd/config.toml
 sed -e 's/SystemdCgroup = false/SystemdCgroup = true/g' -i /etc/containerd/config.toml
 
 echo "=== Initializing cluster ==="

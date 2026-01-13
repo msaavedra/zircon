@@ -6,13 +6,17 @@ metadata:
 spec:
   project: default
 
-  source:
-    repoURL: https://github.com/msaavedra/zircon.git
-    targetRevision: main
-    path: services/gitea
-    helm:
-      valueFiles:
-        - values.yaml
+  sources:
+    - repoURL: https://dl.gitea.com/charts/
+      chart: gitea
+      targetRevision: 10.4.1
+      helm:
+        valueFiles:
+          - $values/services/gitea/values.yaml
+
+    - repoURL: https://github.com/msaavedra/zircon.git
+      targetRevision: main
+      ref: values
 
   destination:
     server: https://kubernetes.default.svc
