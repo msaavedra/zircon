@@ -67,6 +67,9 @@ redis:
 redis-cluster:
   enabled: false
 
+strategy:
+  type: Recreate
+
 deployment:
   annotations:
     checksum/values: "{{ .Values | toJson | sha256sum }}"
