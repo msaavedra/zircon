@@ -6,6 +6,7 @@ gitea:
     server:
       DOMAIN: gitea.agate.home
       ROOT_URL: http://gitea.agate.home/
+      SSH_USER: git
       SSH_DOMAIN: gitea.agate.home
       SSH_PORT: 22
       SSH_LISTEN_PORT: 2022
