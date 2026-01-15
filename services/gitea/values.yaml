@@ -16,8 +16,6 @@ gitea:
       value: "2000"
     - name: USER_GID
       value: "2000"
-    - name: GITEA_WORK_DIR
-      value: "/data/git"
 
 persistence:
   enabled: true
