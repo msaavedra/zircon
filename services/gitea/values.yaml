@@ -11,6 +11,7 @@ gitea:
       SSH_LISTEN_PORT: 2022
       SSH_ROOT_PATH: /data/git/.ssh
       SSH_CREATE_AUTHORIZED_KEYS_FILE: true
+      BUILTIN_SSH_SERVER_USER: git
   env:
     - name: USER_UID
       value: "2000"
