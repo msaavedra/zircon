@@ -7,11 +7,13 @@ env:
   TZ: America/Los_Angeles
 
 persistence:
-  data:
+  config:
     enabled: true
     type: pvc
     existingClaim: frigate-data
     size: 30Gi
+  data:
+    enabled: false
   media:
     enabled: true
     type: hostPath
