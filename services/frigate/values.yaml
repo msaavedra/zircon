@@ -26,6 +26,9 @@ service:
         clusterIP: ""
         port: 5000
 
+mqtt:
+  enabled: false
+
 deployment:
   annotations:
     checksum/values: "{{ .Values | toJson | sha256sum }}"
