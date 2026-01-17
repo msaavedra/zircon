@@ -26,6 +26,15 @@ service:
         clusterIP: ""
         port: 5000
 
+cameras:
+  dummy_camera:
+    enabled: False  # Prevents Frigate from actually trying to connect
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:554/rtsp
+          roles:
+            - detect
+
 mqtt:
   enabled: false
 
