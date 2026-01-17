@@ -17,13 +17,13 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: frigate
+  name: frigate-data
   namespace: services
 spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: ""
-  volumeName: jellyfin-config
+  volumeName: frigate-data
   resources:
     requests:
       storage: 30Gi
