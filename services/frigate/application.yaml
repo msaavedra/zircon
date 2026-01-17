@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frigate
+  namespace: argocd
+spec:
+  project: default
+
+  sources:
+    - repoURL: https://k8s-home-lab.github.io/helm-charts/
+      chart: frigate
+      targetRevision: 9.0.0
+      helm:
+        valueFiles:
+          - $values/services/frigate/values.yaml
+
+    - repoURL: https://github.com/msaavedra/zircon.git
+      targetRevision: main
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: services
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

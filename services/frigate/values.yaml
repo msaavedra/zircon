@@ -1,0 +1,29 @@
+
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    existingClaim: frigate-data
+    size: 30Gi
+  media:
+    enabled: true
+    type: hostPath
+    hostPath: /srv/media/video/cameras
+  cache:
+    enabled: true
+    type: emptyDir
+    medium: Memory
+    sizeLimit: 1Gi
+    mountPath: /dev/shm
+
+service:
+  main:
+    ports:
+      http:
+        type: ClusterIP
+        clusterIP: ""
+        port: 5000
+
+deployment:
+  annotations:
+    checksum/values: "{{ .Values | toJson | sha256sum }}"
