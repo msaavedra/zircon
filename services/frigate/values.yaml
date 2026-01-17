@@ -20,6 +20,8 @@ service:
   main:
     ports:
       http:
+        enabled: true
+        primary: true
         type: ClusterIP
         clusterIP: ""
         port: 5000
