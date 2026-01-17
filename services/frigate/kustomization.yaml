@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - application.yaml
   - storage.yaml
-  -ingress.yaml
-
+  - ingress.yaml
