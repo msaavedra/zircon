@@ -1,3 +1,10 @@
+image:
+  repository: blakeblackshear/frigate
+  tag: 0.13.2
+  pullPolicy: IfNotPresent
+
+env:
+  TZ: America/Los_Angeles
 
 persistence:
   data:
@@ -25,18 +32,44 @@ service:
         type: ClusterIP
         clusterIP: ""
         port: 5000
+      rtmp:
+        enabled: false
 
-cameras:
-  dummy_camera:
-    enabled: False  # Prevents Frigate from actually trying to connect
-    ffmpeg:
-      inputs:
-        - path: rtsp://127.0.0.1:554/rtsp
-          roles:
-            - detect
+securityContext:
+  privileged: true
 
-mqtt:
-  enabled: false
+resources:
+  requests:
+    cpu: 2000m
+    memory: 2Gi
+  limits:
+    cpu: 4000m
+    memory: 6Gi
+
+configmap:
+  config:
+    enabled: true
+    data:
+      config.yml: |
+        mqtt:
+          enabled: false
+
+        detectors:
+          cpu1:
+            type: cpu
+
+        cameras:
+          front:
+            ffmpeg:
+              inputs:
+                - path: http://10.235.3.2/streaming/Channels/1/httpPreview
+                  roles:
+                    - detect
+                    - record
+            detect:
+              width: 352
+              height: 240
+              fps: 5
 
 deployment:
   annotations:
