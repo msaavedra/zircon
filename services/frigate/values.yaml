@@ -5,6 +5,7 @@ image:
 
 env:
   TZ: America/Los_Angeles
+  LIBVA_DRIVER_NAME: "radeonsi"
 
 persistence:
   config:
