@@ -61,7 +61,7 @@ configmap:
             type: cpu
 
         cameras:
-          front:
+          front_porch:
             ffmpeg:
               inputs:
                 - path: http://10.235.3.2/streaming/Channels/1/httpPreview
