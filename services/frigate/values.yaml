@@ -26,6 +26,11 @@ persistence:
     medium: Memory
     sizeLimit: 1Gi
     mountPath: /dev/shm
+  dri:
+    enabled: true
+    type: hostPath
+    hostPath: /dev/dri
+    mountPath: /dev/dri
 
 service:
   main:
