@@ -11,11 +11,15 @@ persistence:
     enabled: true
     type: pvc
     storageClass: "-"
-    existingClaim: frigate-data
-    size: 30Gi
+    existingClaim: frigate-config
+    size: 10Gi
     mountPath: /config
   data:
-    enabled: false
+    enabled: true
+    type: pvc
+    storageClass: "-"
+    existingClaim: frigate-data
+    size: 30Gi
   media:
     enabled: true
     type: hostPath
