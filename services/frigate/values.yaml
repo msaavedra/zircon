@@ -12,6 +12,7 @@ persistence:
     type: pvc
     existingClaim: frigate-data
     size: 30Gi
+    mountPath: /config
   data:
     enabled: false
   media:
