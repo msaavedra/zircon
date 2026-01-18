@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/blakeblackshear/frigate
-  tag: 0.13.2
+  tag: 0.13.2-openvino
   pullPolicy: IfNotPresent
 
 env:
@@ -46,19 +46,6 @@ service:
 
 securityContext:
   privileged: true
-
-additionalContainers:
-  openvino:
-    name: openvino
-    image: ghcr.io/blakeblackshear/frigate-openvino:0.13.2
-    imagePullPolicy: IfNotPresent
-    resources:
-      requests:
-        cpu: 500m
-        memory: 512Mi
-      limits:
-        cpu: 2000m
-        memory: 2Gi
 
 resources:
   requests:
