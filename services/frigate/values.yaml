@@ -10,16 +10,12 @@ persistence:
   config:
     enabled: true
     type: pvc
-    storageClass: "-"
     existingClaim: frigate-config
-    size: 10Gi
     mountPath: /config
   data:
     enabled: true
     type: pvc
-    storageClass: "-"
     existingClaim: frigate-data
-    size: 30Gi
   media:
     enabled: true
     type: hostPath
@@ -56,28 +52,7 @@ resources:
 
 configmap:
   config:
-    enabled: true
-    data:
-      config.yml: |
-        mqtt:
-          enabled: false
-
-        detectors:
-          cpu1:
-            type: cpu
-
-        cameras:
-          front_porch:
-            ffmpeg:
-              inputs:
-                - path: http://10.235.3.2/streaming/Channels/1/httpPreview
-                  roles:
-                    - detect
-                    - record
-            detect:
-              width: 352
-              height: 240
-              fps: 5
+    enabled: false
 
 deployment:
   annotations:
