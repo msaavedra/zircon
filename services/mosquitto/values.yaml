@@ -13,7 +13,7 @@ ports:
     protocol: TCP
   websocket:
     port: 9090
-    nodePort: 39090
+    nodePort: 31090
     protocol: TCP
 
 securityContext:
