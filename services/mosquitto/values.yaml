@@ -3,11 +3,29 @@ image:
   tag: 2.0.20
   pullPolicy: IfNotPresent
 
+service:
+  type: NodePort
+
 ports:
   mqtt:
     port: 1883
     nodePort: 31883
     protocol: TCP
+
+securityContext:
+  enabled: false
+
+podSecurityContext:
+  enabled: false
+
+extraVolumeMounts: []
+
+extraVolumes: []
+
+containerSecurityContext:
+  readOnlyRootFilesystem: false
+
+initContainers: []
 
 persistence:
   enabled: true
