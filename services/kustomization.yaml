@@ -5,3 +5,4 @@ resources:
   - jellyfin
   - gitea
   - frigate
+  - mosquitto
