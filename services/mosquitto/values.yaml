@@ -14,7 +14,5 @@ mosquitto:
     size: 2Gi
 
   config: |
-    persistence true
-    persistence_location /mosquitto/data/
     listener 1883
     allow_anonymous true
