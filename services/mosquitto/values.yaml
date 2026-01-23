@@ -1,5 +1,20 @@
+image:
+  repository: eclipse-mosquitto
+  tag: 2.0.15
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 1883
+
 mosquitto:
   persistence:
     enabled: true
     existingClaim: mosquitto-data
     size: 2Gi
+
+  config: |
+    persistence true
+    persistence_location /mosquitto/data/
+    listener 1883
+    allow_anonymous true
