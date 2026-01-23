@@ -1,0 +1,5 @@
+mosquitto:
+  persistence:
+    enabled: true
+    existingClaim: mosquitto-data
+    size: 2Gi

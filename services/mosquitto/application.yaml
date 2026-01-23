@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mosquitto
+  namespace: argocd
+spec:
+  project: default
+
+  sources:
+    - repoURL: https://naps.github.io/helm-charts/
+      chart: mosquitto
+      targetRevision: 1.0.4
+      helm:
+        valueFiles:
+          - $values/services/mosquitto/values.yaml
+
+    - repoURL: https://github.com/msaavedra/zircon.git
+      targetRevision: main
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: services
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
