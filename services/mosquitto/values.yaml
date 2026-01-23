@@ -14,12 +14,12 @@ ports:
     protocol: TCP
 
 podSecurityContext:
-  runAsUser: 2000
-  fsGroup: 2000
+  runAsUser: 0
+  fsGroup: 0
 
 securityContext:
-  runAsUser: 2000
-  fsGroup: 2000
+  runAsUser: 0
+  fsGroup: 0
 
 persistence:
   enabled: true
