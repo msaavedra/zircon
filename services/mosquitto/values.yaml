@@ -5,8 +5,10 @@ image:
 
 service:
   type: NodePort
-  port: 1883
-  nodePort: 1883
+  ports:
+    mqtt:
+      port: 1883
+      nodePort: 1883
 
 mosquitto:
   persistence:
