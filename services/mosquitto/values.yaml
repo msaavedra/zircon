@@ -8,7 +8,7 @@ service:
   ports:
     mqtt:
       port: 1883
-      nodePort: 1883
+      nodePort: 31883
 
 mosquitto:
   persistence:
