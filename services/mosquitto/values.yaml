@@ -6,6 +6,7 @@ image:
 service:
   type: NodePort
   port: 1883
+  nodePort: 1883
 
 mosquitto:
   persistence:
