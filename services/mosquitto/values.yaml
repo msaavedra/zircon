@@ -11,6 +11,10 @@ ports:
     port: 1883
     nodePort: 31883
     protocol: TCP
+  websocket:
+    port: 9090
+    nodePort: 39090
+    protocol: TCP
 
 securityContext:
   runAsUser: 1883
@@ -27,6 +31,8 @@ config: |
   persistence_location /mosquitto/data/
   log_dest stdout
   listener 1883
+  listener 9090
+  protocol websockets
   allow_anonymous true
 
 acls: |
