@@ -1,13 +1,39 @@
 image:
   repository: eclipse-mosquitto
-  tag: 2.0.15
+  tag: 1.6.12
   pullPolicy: IfNotPresent
 
-mosquitto:
-  persistence:
-    enabled: true
-    existingClaim: mosquitto-data
-    size: 2Gi
+ports:
+  mqtt:
+    port: 1883
+    nodePort: 31883
+    protocol: TCP
+  websocket:
+    port: 9090
+    nodePort: 39090
+    protocol: TCP
 
-  config: |
-    allow_anonymous true
+podSecurityContext:
+  runAsUser: 2000
+  fsGroup: 2000
+
+securityContext:
+  runAsUser: 2000
+  fsGroup: 2000
+
+persistence:
+  enabled: true
+  existingClaim: mosquitto-data
+  size: 2Gi
+
+config: |
+  persistence true
+  persistence_location /mosquitto/data/
+  log_dest stdout
+  listener 1883
+  listener 9090
+  protocol websockets
+  allow_anonymous true
+
+acls: |
+  topic readwrite #

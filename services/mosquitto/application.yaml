@@ -7,9 +7,9 @@ spec:
   project: default
 
   sources:
-    - repoURL: https://naps.github.io/helm-charts/
+    - repoURL: https://storage.googleapis.com/t3n-helm-charts
       chart: mosquitto
-      targetRevision: 1.0.4
+      targetRevision: 2.4.1
       helm:
         valueFiles:
           - $values/services/mosquitto/values.yaml
