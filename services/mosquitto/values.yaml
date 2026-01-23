@@ -19,7 +19,6 @@ ports:
 securityContext:
   runAsUser: 1883
   runAsGroup: 1883
-  fsGroup: 1883
 
 persistence:
   enabled: true
