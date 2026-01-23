@@ -13,19 +13,9 @@ ports:
     protocol: TCP
 
 securityContext:
-  enabled: false
-
-podSecurityContext:
-  enabled: false
-
-extraVolumeMounts: []
-
-extraVolumes: []
-
-containerSecurityContext:
-  readOnlyRootFilesystem: false
-
-initContainers: []
+  runAsUser: 1883
+  runAsGroup: 1883
+  fsGroup: 1883
 
 persistence:
   enabled: true
