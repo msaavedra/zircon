@@ -1,6 +1,6 @@
 image:
   repository: eclipse-mosquitto
-  tag: 1.6.12
+  tag: 2.0.20
   pullPolicy: IfNotPresent
 
 ports:
@@ -8,18 +8,6 @@ ports:
     port: 1883
     nodePort: 31883
     protocol: TCP
-  websocket:
-    port: 9001
-    nodePort: 39090
-    protocol: TCP
-
-podSecurityContext:
-  runAsUser: 0
-  fsGroup: 0
-
-securityContext:
-  runAsUser: 0
-  fsGroup: 0
 
 persistence:
   enabled: true
