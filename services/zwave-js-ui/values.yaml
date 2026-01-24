@@ -8,7 +8,7 @@ env:
     value: /usr/src/app/store/.config-db
 
 securityContext:
-  runAsGroup: 20
+  runAsUser: 0
 
 persistence:
   enabled: true
