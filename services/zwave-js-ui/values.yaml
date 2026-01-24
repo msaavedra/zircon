@@ -6,14 +6,15 @@ image:
 env:
   - name: ZWAVE_JS_EXTERNAL_CONFIG
     value: /usr/src/app/store/.config-db
+  - name: ZWAVEJS_SERIAL_PORT
+    value: /dev/serial/by-id/usb-Nabu_Casa_ZWA-2_80B54EE15D30-if00
 
 persistence:
   enabled: true
   existingClaim: zwave-js-ui-data
   mountPath: /usr/src/app/store
 
-# -- Set this when the appropriate value is known.
-#usbDevice: /dev/ttyUSB0
+usbDevice: /dev/serial/by-id/usb-Nabu_Casa_ZWA-2_80B54EE15D30-if00
 
 resources:
   limits:
