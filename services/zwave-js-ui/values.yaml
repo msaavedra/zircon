@@ -9,8 +9,6 @@ env:
 
 securityContext:
   runAsGroup: 20
-  supplementalGroups:
-    - 20
 
 persistence:
   enabled: true
