@@ -6,8 +6,11 @@ image:
 env:
   - name: ZWAVE_JS_EXTERNAL_CONFIG
     value: /usr/src/app/store/.config-db
-  - name: ZWAVEJS_SERIAL_PORT
-    value: /dev/serial/by-id/usb-Nabu_Casa_ZWA-2_80B54EE15D30-if00
+
+securityContext:
+  runAsGroup: 20
+  supplementalGroups:
+    - 20
 
 persistence:
   enabled: true
