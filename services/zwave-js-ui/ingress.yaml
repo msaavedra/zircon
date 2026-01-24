@@ -19,4 +19,4 @@ spec:
               service:
                 name: zwave-js-ui
                 port:
-                  number: 8091
+                  number: 80
