@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: zwave-js-ui
+  namespace: argocd
+spec:
+  project: default
+
+  sources:
+    - repoURL: https://charts.ar80.eu
+      chart: zwave-js-ui
+      targetRevision: 0.3.9
+      helm:
+        valueFiles:
+          - $values/services/zwave-js-ui/values.yaml
+
+    - repoURL: https://github.com/msaavedra/zircon.git
+      targetRevision: main
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: services
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

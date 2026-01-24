@@ -1,0 +1,28 @@
+image:
+  repository: zwavejs/zwave-js-ui
+  tag: 11.10.1
+  pullPolicy: IfNotPresent
+
+env:
+  - name: ZWAVE_JS_EXTERNAL_CONFIG
+    value: /usr/src/app/store/.config-db
+
+persistence:
+  enabled: true
+  existingClaim: zwave-js-ui-data
+  mountPath: /usr/src/app/store
+
+# -- Set this when the appropriate value is known.
+#usbDevice: /dev/ttyUSB0
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 192Mi
+
+deployment:
+  annotations:
+    checksum/values: "{{ .Values | toJson | sha256sum }}"

@@ -36,3 +36,7 @@ config: |
 
 acls: |
   topic readwrite #
+
+deployment:
+  annotations:
+    checksum/values: "{{ .Values | toJson | sha256sum }}"
