@@ -31,3 +31,7 @@ configuration:
   persistence:
     enabled: true
     existingClaim: hass-data
+
+deployment:
+  annotations:
+    checksum/values: "{{ .Values | toJson | sha256sum }}"

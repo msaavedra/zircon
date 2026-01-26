@@ -16,4 +16,4 @@ spec:
               service:
                 name: gitea-http
                 port:
-                  number: 8193
+                  number: 8123
