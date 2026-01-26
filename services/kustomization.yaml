@@ -7,3 +7,4 @@ resources:
   - frigate
   - mosquitto
   - zwave-js-ui
+  - hass
