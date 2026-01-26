@@ -32,9 +32,9 @@ configuration:
   trusted_proxies:
     - 10.235.2.0/24
 
-  persistence:
-    enabled: true
-    existingClaim: hass-data
+persistence:
+  enabled: true
+  existingClaim: hass-data
 
 deployment:
   annotations:
