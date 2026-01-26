@@ -19,6 +19,10 @@ hostPort:
   enabled: true
   port: 8123
 
+service:
+  type: ClusterIP
+  port: 8123
+
 hostNetwork: true
 
 configuration:
