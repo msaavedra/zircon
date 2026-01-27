@@ -25,15 +25,17 @@ service:
 
 configuration:
   enabled: true
-  cors_allowed_origins:
-    - https://hass.agate.home
-    - http://hass.agate.home
   # Narrow this down after we finish setting up new proxy server.
   trusted_proxies:
     - 10.0.0.0/8
 
 ingress:
-  enabled: true
+  external: true
+  hosts:
+    - host: hass.agate.home
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
 
 persistence:
   enabled: true
