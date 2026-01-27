@@ -15,15 +15,15 @@ securityContext:
   runAsNonRoot: true
   runAsUser: 2000
 
+hostNetwork: false
+
 hostPort:
-  enabled: true
-  port: 8123
+  enabled: false
 
 service:
   type: ClusterIP
   port: 8123
-
-hostNetwork: true
+  targetPort: 8123
 
 configuration:
   enabled: true
@@ -35,6 +35,9 @@ configuration:
 persistence:
   enabled: true
   existingClaim: hass-data
+
+controller:
+  type: Deployment
 
 deployment:
   annotations:
