@@ -11,18 +11,18 @@ securityContext:
   capabilities:
     drop:
     - ALL
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   runAsNonRoot: true
   runAsUser: 2000
 
 hostPort:
   enabled: false
 
+hostNetwork: false
+
 service:
   type: ClusterIP
   port: 8123
-
-hostNetwork: false
 
 configuration:
   enabled: true
