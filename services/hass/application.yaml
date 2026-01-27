@@ -12,7 +12,7 @@ spec:
       targetRevision: 0.3.41
       helm:
         valueFiles:
-          - $values/services/gitea/values.yaml
+          - $values/services/hass/values.yaml
 
     - repoURL: https://github.com/msaavedra/zircon.git
       targetRevision: main
