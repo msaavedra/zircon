@@ -16,4 +16,4 @@ spec:
               service:
                 name: hass-home-assistant
                 port:
-                  number: 8123
+                  number: 8080

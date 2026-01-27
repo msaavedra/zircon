@@ -22,8 +22,6 @@ hostPort:
 
 service:
   type: ClusterIP
-  port: 8123
-  targetPort: 8123
 
 configuration:
   enabled: true
