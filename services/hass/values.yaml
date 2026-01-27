@@ -23,7 +23,7 @@ service:
   type: ClusterIP
   port: 8123
 
-hostNetwork: false
+hostNetwork: true
 
 configuration:
   enabled: true
