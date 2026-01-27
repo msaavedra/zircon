@@ -28,7 +28,7 @@ configuration:
 
   # Narrow this down after we finish setting up new proxy server.
   trusted_proxies:
-    - 10.235.2.0/24
+    - 10.235.0.0/12
 
 persistence:
   enabled: true
