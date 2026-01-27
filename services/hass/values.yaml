@@ -16,13 +16,14 @@ securityContext:
   runAsUser: 2000
 
 hostPort:
-  enabled: false
-
-hostNetwork: false
+  enabled: true
+  port: 8123
 
 service:
   type: ClusterIP
   port: 8123
+
+hostNetwork: false
 
 configuration:
   enabled: true
