@@ -31,7 +31,7 @@ configuration:
     - http://hass.agate.home
   # Narrow this down after we finish setting up new proxy server.
   trusted_proxies:
-    - 10.235.0.0/12
+    - 10.0.0.0/8
 
 persistence:
   enabled: true
