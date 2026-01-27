@@ -25,14 +25,15 @@ service:
 
 configuration:
   enabled: true
-  http:
-    use_x_forwarded_for: true
-    cors_allowed_origins:
-      - https://hass.agate.home
-      - http://hass.agate.home
-    # Narrow this down after we finish setting up new proxy server.
-    trusted_proxies:
-      - 10.0.0.0/8
+  cors_allowed_origins:
+    - https://hass.agate.home
+    - http://hass.agate.home
+  # Narrow this down after we finish setting up new proxy server.
+  trusted_proxies:
+    - 10.0.0.0/8
+
+ingress:
+  enabled: true
 
 persistence:
   enabled: true
