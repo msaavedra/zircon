@@ -3,7 +3,7 @@ image:
   tag: 2023.8.4
   pullPolicy: IfNotPresent
 
-replicaCount: 0
+replicaCount: 1
 
 #podSecurityContext:
 #  runAsUser: 2000
