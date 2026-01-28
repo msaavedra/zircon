@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/home-assistant/home-assistant
-  tag: 2023.3.2
+  tag: 2023.8.4
   pullPolicy: IfNotPresent
 
 #podSecurityContext:
