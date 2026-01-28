@@ -14,16 +14,16 @@ spec:
   hostPath:
     path: /srv/apps/hass/data
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: hass-data
-  namespace: services
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: ""
-  volumeName: hass-data
-  resources:
-    requests:
-      storage: 50Gi
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: hass-data
+#  namespace: services
+#spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  storageClassName: ""
+#  volumeName: hass-data
+#  resources:
+#    requests:
+#      storage: 50Gi
