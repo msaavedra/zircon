@@ -20,13 +20,6 @@ persistence:
 
 usbDevice: /dev/serial/by-id/usb-Nabu_Casa_ZWA-2_80B54EE15D30-if00
 
-service:
-  main:
-    ports:
-      http:
-        port: 80
-        targetPort: 8091
-
 resources:
   limits:
     cpu: 300m
