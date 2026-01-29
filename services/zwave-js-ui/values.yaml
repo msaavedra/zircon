@@ -22,14 +22,11 @@ usbDevice: /dev/serial/by-id/usb-Nabu_Casa_ZWA-2_80B54EE15D30-if00
 
 service:
   type: NodePort
-  ports:
-    ui:
-      port: 80
-      targetPort: 8091
-    websocket:
-      port: 3000
-      targetPort: 3000
-      nodePort: 33000
+
+ports:
+  websocket:
+    servicePort: 3000
+    nodePort: 32300
 
 resources:
   limits:
