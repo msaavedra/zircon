@@ -26,7 +26,7 @@ service:
 ports:
   websocket:
     servicePort: 3000
-    nodePort: 32300
+    containerPort: 32300
 
 resources:
   limits:
