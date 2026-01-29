@@ -5,3 +5,4 @@ resources:
   - application.yaml
   - ingress.yaml
   - storage.yaml
+  - websocket_service.yaml
