@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frigate-go2rtc
+  namespace: services
+spec:
+  selector:
+    app.kubernetes.io/name: frigate
+  ports:
+    - name: rtsp
+      port: 8554
+      targetPort: 8554
+    - name: api
+      port: 1984
+      targetPort: 1984
+    - name: webrtc
+      port: 8555
+      targetPort: 8555
+  type: ClusterIP
