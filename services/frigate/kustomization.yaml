@@ -5,3 +5,4 @@ resources:
   - application.yaml
   - ingress.yaml
   - storage.yaml
+  - frigate-go2rtc-service.yaml
