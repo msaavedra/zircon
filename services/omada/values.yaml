@@ -1,0 +1,32 @@
+image:
+  repository: mbentley/omada-controller
+  tag: 6.0.0.25
+  pullPolicy: IfNotPresent
+
+config:
+  timezone: "America/Los_Angeles"
+
+persistence:
+  # The chart doesn't support existing claims, so we'll configure persistence manually.
+  data:
+    enabled: false
+  logs:
+    enabled: false
+
+extraVolumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: omada-data
+  - name: logs
+    persistentVolumeClaim:
+      claimName: omada-logs
+
+extraVolumeMounts:
+  - name: data
+    mountPath: /opt/tplink/EAPController/data
+  - name: logs
+    mountPath: /opt/tplink/EAPController/logs
+
+deployment:
+  annotations:
+    checksum/values: "{{ .Values | toJson | sha256sum }}"
