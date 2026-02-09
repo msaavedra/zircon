@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: omada-controller
+  name: omada-omada-controller
 spec:
   template:
     spec:
@@ -10,7 +10,3 @@ spec:
         runAsGroup: 2000
         fsGroup: 2000
         fsGroupChangePolicy: OnRootMismatch
-      containers:
-        - name: omada-controller
-          securityContext:
-            allowPrivilegeEscalation: false
