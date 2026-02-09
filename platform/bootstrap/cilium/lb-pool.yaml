@@ -6,5 +6,3 @@ spec:
   blocks:
     - start: "10.235.16.2"
       stop: "10.235.16.31"
-    - start: "10.235.2.6"  # Reclaim old VM IP addresses, possibly use them for their k8s replacements.
-      stop: "10.235.2.8"
