@@ -8,4 +8,4 @@ resources:
   - mosquitto
   - zwave-js-ui
   - hass
-  - omada
+  #- omada
