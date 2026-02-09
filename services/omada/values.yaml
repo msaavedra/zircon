@@ -8,7 +8,6 @@ config:
 
 serviceAccount:
   create: false
-  name: kube
 
 securityContext:
   runAsUser: 2000
