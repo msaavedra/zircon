@@ -19,22 +19,23 @@ persistence:
   # The chart doesn't support existing claims, so we'll configure persistence manually.
   data:
     enabled: false
+
   logs:
     enabled: false
 
-extraVolumes:
-  - name: data
-    persistentVolumeClaim:
-      claimName: omada-data
-  - name: logs
-    persistentVolumeClaim:
-      claimName: omada-logs
+  extraVolumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: omada-data
+    - name: logs
+      persistentVolumeClaim:
+        claimName: omada-logs
 
-extraVolumeMounts:
-  - name: data
-    mountPath: /opt/tplink/EAPController/data
-  - name: logs
-    mountPath: /opt/tplink/EAPController/logs
+  extraVolumeMounts:
+    - name: data
+      mountPath: /opt/tplink/EAPController/data
+    - name: logs
+      mountPath: /opt/tplink/EAPController/logs
 
 deployment:
   annotations:

@@ -6,3 +6,5 @@ resources:
   - storage.yaml
   - lb-service.yaml
 
+patchesStrategicMerge:
+  - patch-securitycontext.yaml
