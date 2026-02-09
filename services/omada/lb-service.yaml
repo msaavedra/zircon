@@ -19,4 +19,4 @@ spec:
     - name: manager
       port: 29813
   selector:
-    app: omada-omada-controller
+    app: omada
