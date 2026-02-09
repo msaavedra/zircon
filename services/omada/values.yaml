@@ -6,7 +6,11 @@ image:
 config:
   timezone: "America/Los_Angeles"
 
-podSecurityContext:
+serviceAccount:
+  create: false
+  name: kube
+
+securityContext:
   runAsUser: 2000
   runAsGroup: 2000
   fsGroup: 2000
