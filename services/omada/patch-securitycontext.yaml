@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: omada-omada-controller
+  name: omada-controller
 spec:
   template:
     spec:
