@@ -7,13 +7,18 @@ spec:
   project: default
 
   sources:
-    - repoURL: oci://registry-1.docker.io/mbentley/omada-controller-helm
-      chart: omada-controller
-      targetRevision: 1.0.2
-      helm:
-        valueFiles:
-          - $values/services/omada/values.yaml
+    - repoURL: https://github.com/msaavedra/zircon.git
+      targetRevision: main
+      path: services/omada/kustomize
       kustomize:
+        helmCharts:
+          - name: omada-controller
+            repo: oci://registry-1.docker.io/mbentley/omada-controller-helm
+            version: 1.0.2
+            releaseName: omada
+            # This points to the file in Source 2 using the ref
+            valuesInline:
+              - $values/services/omada/values.yaml
         patches:
           - target:
               kind: StatefulSet
