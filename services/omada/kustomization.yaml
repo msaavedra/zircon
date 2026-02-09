@@ -5,6 +5,3 @@ resources:
   - application.yaml
   - storage.yaml
   - lb-service.yaml
-
-#patches:
-#  - path: patch-securitycontext.yaml
