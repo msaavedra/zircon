@@ -5,10 +5,11 @@ image:
 
 config:
   timezone: "America/Los_Angeles"
-  rootless: false
 
-serviceAccount:
-  create: false
+service:
+  type: LoadBalancer
+  annotations:
+    io.cilium/lb-ipam-ips: 10.235.2.7
 
 persistence:
   # The chart doesn't support existing claims, so we'll configure persistence manually.

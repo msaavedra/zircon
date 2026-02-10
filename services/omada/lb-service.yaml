@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: omada-omada-controller
+  namespace: services
 spec:
   type: LoadBalancer
   loadBalancerIP: 10.235.2.7
