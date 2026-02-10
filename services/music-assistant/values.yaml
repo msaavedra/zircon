@@ -1,0 +1,37 @@
+image:
+  repository: eclipse-mosquitto
+  tag: 2.7.5
+  pullPolicy: IfNotPresent
+
+service:
+  enabled: true
+  type: LoadBalancer
+  annotations:
+    io.cilium/lb-ipam-ips: 10.235.2.8
+  loadBalancerIP: 10.235.2.8
+
+persistence:
+  existingClaim: music-assistant-config
+  size: 5gi
+
+additionalVolumes:
+  - name: media-local
+    hostPath:
+      path: /srv/media/music
+      type: Directory
+
+additionalMounts:
+  - name: media-local
+    mountPath: /media/local
+    readOnly: true
+
+env:
+  - name: TZ
+    value: "America/Los_Angeles"
+
+strategy:
+  type: Recreate
+
+deployment:
+  annotations:
+    checksum/values: "{{ .Values | toJson | sha256sum }}"

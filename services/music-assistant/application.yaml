@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: music-assistant
+  namespace: argocd
+spec:
+  project: default
+
+  sources:
+    - repoURL: https://bdclark.github.io/helm-charts
+      chart: music-assistant
+      targetRevision: 0.3.0
+      helm:
+        valueFiles:
+          - $values/services/music-assistant/values.yaml
+
+    - repoURL: https://github.com/msaavedra/zircon.git
+      targetRevision: main
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: services
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
