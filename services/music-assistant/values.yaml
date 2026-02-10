@@ -1,5 +1,5 @@
 image:
-  repository: eclipse-mosquitto
+  repository: ghcr.io/music-assistant/server
   tag: 2.7.5
   pullPolicy: IfNotPresent
 
