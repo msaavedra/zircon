@@ -17,7 +17,7 @@ replicaCount: 1
 #  runAsNonRoot: true
 #  runAsUser: 2000
 
-hostNetwork: false
+hostNetwork: true
 
 hostPort:
   enabled: false
