@@ -8,5 +8,5 @@ resources:
   - mosquitto
   - zwave-js-ui
   - hass
-#  - music-assistant
+  - music-assistant
   - omada
