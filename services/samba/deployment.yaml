@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samba
+  namespace: samba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: samba
+  template:
+    metadata:
+      labels:
+        app: samba
+    spec:
+      containers:
+        - name: samba
+          image: ghcr.io/servercontainers/samba:latest
+
+          securityContext:
+            runAsUser: 0
+
+          ports:
+            - containerPort: 445
+              name: smb
+
+          volumeMounts:
+            - name: config
+              mountPath: /etc/samba
+              readOnly: true
+
+            - name: share-data
+              mountPath: /shares
+
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: samba-config
+
+        - name: share-data
+          hostPath:
+            path: /srv/smb
+            type: DirectoryOrCreate
