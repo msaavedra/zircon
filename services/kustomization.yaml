@@ -10,4 +10,5 @@ resources:
   - hass
   - music-assistant
   - omada
-  - samba
+  # The following are non-helm, so we only need to add the Application manifest here.
+  - samba/application.yaml
