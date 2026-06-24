@@ -26,7 +26,7 @@ spec:
 
           volumeMounts:
             - name: config
-              mountPath: /etc/samba
+              mountPath: /container/config/samba
               readOnly: true
 
             - name: state
