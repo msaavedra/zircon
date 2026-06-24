@@ -105,6 +105,11 @@ kube_do kubectl -n kube-system rollout status deploy/cilium-operator
 kube_do kubectl apply -f "${KUBE_BASE}/platform/bootstrap/cilium/lb-pool.yaml"
 kube_do kubectl apply -f "${KUBE_BASE}/platform/bootstrap/cilium/l2-policy.yaml"
 
+echo "=== Create Secrets ==="
+# Note, this should eventually be replaced with SOPS or something similar.
+read -p "Enter a samba password for user mike: " -s SMB_PW_MIKE ; echo
+kube_do kubectl create secret generic samba-users -n services --from-file=samba_pw_mike=<(echo "${SMB_PW_MIKE}")
+
 echo "=== Installing Argo CD ==="
 
 for ns in argocd platform services; do

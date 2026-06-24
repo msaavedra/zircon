@@ -16,6 +16,18 @@ spec:
       containers:
         - name: samba
           image: ghcr.io/servercontainers/samba:latest
+          env:
+            - name: AVAHI_DISABLE
+              value: "true"
+            - name: GROUP_smbadmins
+              value: "1000"
+            - name: USER_mike
+              valueFrom:
+                secretKeyRef:
+                  name: samba-users
+                  key: samba_pw_mike
+            - name: GROUPS_mike
+              value: smbadmins
 
           securityContext:
             runAsUser: 0
