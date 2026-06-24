@@ -27,3 +27,33 @@ spec:
   resources:
     requests:
       storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: samba-state
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  hostPath:
+    path: /srv/apps/samba/state
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: samba-state
+  namespace: services
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  volumeName: samba-state
+  resources:
+    requests:
+      storage: 10Gi

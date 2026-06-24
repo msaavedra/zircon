@@ -29,6 +29,9 @@ spec:
               mountPath: /etc/samba
               readOnly: true
 
+            - name: state
+              mountPath: /var/lib/samba
+
             - name: share-data
               mountPath: /shares
 
@@ -36,6 +39,10 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: samba-config
+
+        - name: state
+          persistentVolumeClaim:
+            claimName: samba-state
 
         - name: share-data
           hostPath:
