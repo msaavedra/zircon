@@ -21,7 +21,7 @@ spec:
               value: "true"
             - name: GROUP_smbadmins
               value: "1000"
-            - name: USER_mike
+            - name: ACCOUNT_mike
               valueFrom:
                 secretKeyRef:
                   name: samba-users
