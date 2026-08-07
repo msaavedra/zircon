@@ -20,6 +20,8 @@ spec:
             - name: AVAHI_DISABLE
               value: "true"
             - name: GROUP_smbadmins
+              value: "1001"
+            - name: UID_mike
               value: "1000"
             - name: ACCOUNT_mike
               valueFrom:
